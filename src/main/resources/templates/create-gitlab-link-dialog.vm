@@ -1,0 +1,47 @@
+#* @vtlmacrolibrary path="../../../../../../../jira-core/src/main/resources/templates/plugins/jira/issuelinks/macros.vm" *#
+#* @vtlvariable name="textutils" type="com.opensymphony.util.TextUtils" *#
+#* @vtlvariable name="urlcodec" type="com.atlassian.jira.util.JiraUrlCodec" *#
+#* @vtlvariable name="keyboardShortcutManager" type="com.atlassian.jira.plugin.keyboardshortcut.KeyboardShortcutManager" *#
+#* @vtlvariable name="jirautils" type="com.atlassian.jira.util.JiraUtils" *#
+#* @vtlvariable name="req" type="javax.servlet.http.HttpServletRequest" *#
+#* @vtlvariable name="i18n" type="com.atlassian.jira.util.I18nHelper" *#
+#* @vtlvariable name="action" type="corg.vaulttec.jira.gitlab.links.action.CreateLinkAction" *#
+#* @vtlvariable name="webResourceManager" type="com.atlassian.plugin.webresource.WebResourceManager" *#
+<html>
+<head>
+    #issueLinkHeader ($action $i18n $webResourceManager $keyboardShortcutManager)
+</head>
+<body>
+    <form action="CreateLink.jspa" method="post" id="gitlab-link" class="aui">
+
+        <div class="form-body">
+            #issueLinkHiddenFields ($action)
+
+            #if (${action.validToView})
+
+                #issueLinkErrorMessages ($action)
+                #issueLinkTitle ($i18n)
+                #issueLinkDescription ($i18n "org.vaulttec.gitlab-links.link.description")
+
+                <div class="field-group">
+                    <label for="gitlab-link-url">
+                        ${i18n.getText("remotelink.service.url")}
+                        #issueLinkFieldRequired ()
+                    </label>
+                    <input type="text" class="text full-width-field" id="gitlab-link-url" name="url" value="$textutils.htmlEncode($!{action.url})"/>
+                    <div class="description">${i18n.getText("org.vaulttec.gitlab-links.link.url.description")}</div>
+                    #issueLinkFieldError ($action "url" $textutils)
+                </div>
+
+                #issueLinkCommentSection ($action)
+
+            #else
+                #issueLinkNotValidToView ($action $req $i18n $jirautils $urlcodec)
+            #end
+        </div>
+
+        #issueLinkFooter ($action $req $i18n)
+
+    </form>
+</body>
+</html>

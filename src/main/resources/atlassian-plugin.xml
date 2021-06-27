@@ -1,0 +1,51 @@
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+        <param name="configure.url">/plugins/servlet/gitlab-links/configure</param>
+    </plugin-info>
+
+    <resource type="i18n" name="i18n" location="gitlab-links"/>
+
+    <web-resource key="resources" name="GitLab Links Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <resource type="download" name="gitlab-links.css" location="/css/gitlab-links.css" />
+        <resource type="download" name="images/" location="/images" />
+        <context>gitlab-links</context>
+    </web-resource>
+
+    <!-- Plugin configuration servlet and corresponding admin menu item -->
+    <servlet key="config-servlet" name="Config Servlet" class="org.vaulttec.jira.gitlab.links.config.ConfigServlet">
+        <url-pattern>/gitlab-links/configure</url-pattern>
+    </servlet>
+    <web-item key="config-menu-item" name="Config Link" section="admin_applications_section/admin_applications_integrations_section" weight="40">
+        <description>Gitlab Links Configuration</description>
+        <label key="org.vaulttec.gitlab-links.plugin.name" />
+        <link linkId="config">/plugins/servlet/gitlab-links/configure</link>
+    </web-item>
+
+    <!-- Remote issue link type and corresponding link action -->
+    <web-item key="create-link" section="create-issue-link-types" weight="100">
+        <label key="org.vaulttec.gitlab-links.link.title" />
+        <link linkId="create-link">/secure/CreateLink!default.jspa?id=${issueId}</link>
+        <param name="focused-field-name" value="url"/>
+    </web-item>
+    <webwork1 key="link-entity" name="Create GitLab Link" class="java.lang.Object">
+        <actions>
+            <action name="org.vaulttec.jira.gitlab.links.action.CreateGitLabLinkAction" alias="CreateLink">
+                <view name="error">/templates/create-gitlab-link-dialog.vm</view>
+                <view name="input">/templates/create-gitlab-link-dialog.vm</view>
+            </action>
+        </actions>
+    </webwork1>
+
+     <!-- Remote issue link renderer -->
+   <issue-link-renderer key="link-renderer" application-type="org.vaulttec.gitlab-links" class="org.vaulttec.jira.gitlab.links.renderer.GitLabLinkRenderer">
+        <resource name="initial-view" type="velocity" location="templates/render-gitlab-link.vm"/>
+        <resource name="final-view" type="velocity" location="templates/render-gitlab-link.vm"/>
+    </issue-link-renderer>
+
+</atlassian-plugin>

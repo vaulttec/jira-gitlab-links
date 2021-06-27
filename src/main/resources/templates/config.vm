@@ -1,0 +1,42 @@
+<html>
+<head>
+    <title>$i18n.getText("org.vaulttec.gitlab-links.config.title")</title>
+    <meta name="decorator" content="atl.admin">
+    $webResourceManager.requireResource("org.vaulttec.jira-gitlab-links:gitlab-links-resources")
+</head>
+<body>
+<div>
+	#if ($success && $success == 'success')
+	<div class="aui-message aui-message-success">
+		<p>$i18n.getText("org.vaulttec.gitlab-links.config.success")</span></p>
+	</div>
+	#end
+	#if ($error && $error == 'error')
+	<div class="aui-message aui-message-error">
+		<p>$i18n.getText("org.vaulttec.gitlab-links.config.error")</span></p>
+	</div>
+	#end
+	<form id="admin" class="aui" method="POST" action="./configure">
+	    <div class="field-group">
+	        <label for="serverUrl">$i18n.getText("org.vaulttec.gitlab-links.config.serverUrl")<span class="aui-icon icon-required">required</span></label>
+	        <input type="text" id="serverUrl" name="serverUrl" class="text" value="$!serverUrl">
+	        <div class="description">$i18n.getText("org.vaulttec.gitlab-links.config.serverUrlDescription")</div>
+			#if ($serverUrlError && $serverUrlError == 'error')<span class="error">$i18n.getText("org.vaulttec.gitlab-links.config.serverUrlError")</span>#end
+	    </div>
+
+	    <div class="field-group">
+	        <label for="apiKey">$i18n.getText("org.vaulttec.gitlab-links.config.apiKey")</label>
+	        <input type="text" id="apiKey" name="apiKey" class="text" value="$!apiKey">
+	        <div class="description">$i18n.getText("org.vaulttec.gitlab-links.config.apiKeyDescription")</div>
+			#if ($apiKeyError && $apiKeyError == 'error')<span class="error">$i18n.getText("org.vaulttec.gitlab-links.config.apiKeyError")</span>#end
+	    </div>
+
+	    <div class="buttons-container">
+	        <div class="buttons">
+	            <input type="submit" class="button submit" value="$i18n.getText("org.vaulttec.gitlab-links.config.save")">
+	        </div>
+	    </div>
+	</form>
+</div>
+</body>
+</html>
