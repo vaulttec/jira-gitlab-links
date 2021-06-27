@@ -4,7 +4,7 @@
 
 This plugin provides an easy way to [link Jira issues](https://confluence.atlassian.com/jiracoreserver/linking-issues-939937913.html) with GitLab items via [remote issue links](https://developer.atlassian.com/server/jira/platform/creating-remote-issue-links/):
 
-[Create Link](https://raw.githubusercontent.com/wiki/vaulttec/jira-gitlab-links/images/GitLab-Links-Create-Link.png)
+![Create Link](https://raw.githubusercontent.com/wiki/vaulttec/jira-gitlab-links/images/GitLab-Links-Create-Link.png)
 
 These links are rendered with additional information retrieved via GitLab's REST API:
 
