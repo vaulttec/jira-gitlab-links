@@ -8,14 +8,20 @@
     <artifactId>jira-gitlab-links</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
+    <name>GitLab Links plugin for Jira</name>
+    <description>This Jira plugin provides special rendering of GitLab URLs.</description>
+    <packaging>atlassian-plugin</packaging>
+
     <organization>
         <name>VaultTec</name>
         <url>http://vaulttec.org/</url>
     </organization>
 
-    <name>GitLab Links plugin for Jira</name>
-    <description>This Jira plugin provides special rendering of GitLab URLs.</description>
-    <packaging>atlassian-plugin</packaging>
+    <scm>
+        <url>https://github.com/vaulttec/jira-gitlab-links</url>
+        <connection>scm:git:https://github.com/vaulttec/jira-gitlab-links.git</connection>
+        <tag>HEAD</tag>
+    </scm>
 
     <dependencies>
         <dependency>
