@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.vaulttec</groupId>
     <artifactId>jira-gitlab-links</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <name>GitLab Links plugin for Jira</name>
     <description>This Jira plugin provides special rendering of GitLab URLs.</description>
@@ -19,7 +19,7 @@
     <scm>
         <url>https://github.com/vaulttec/jira-gitlab-links</url>
         <connection>scm:git:https://github.com/vaulttec/jira-gitlab-links.git</connection>
-        <tag>v1.0.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <dependencies>
